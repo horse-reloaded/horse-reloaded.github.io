@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "outline";
+type Variant = "primary" | "secondary" | "outline" | "discord";
 type Size = "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -29,6 +29,8 @@ export default function Button({
       "border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-foreground",
     outline:
       "border border-solid border-white bg-transparent text-foreground hover:bg-black/[.05] dark:hover:bg-white/[.06]",
+    discord:
+      "bg-white text-black shadow-sm ring-1 ring-black/10 hover:bg-neutral-100 dark:hover:bg-neutral-200 transition-transform hover:scale-[1.03] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background relative overflow-hidden btn-shine",
   };
 
   const sizes: Record<Size, string> = {
