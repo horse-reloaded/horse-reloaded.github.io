@@ -113,7 +113,7 @@ export default function FeaturesInteractive() {
 
         <div className="md:col-span-8 relative">
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-black/5 via-transparent to-black/5 dark:from-white/5 dark:via-transparent dark:to-white/5 pointer-events-none" />
-          <div className="relative border border-black/10 dark:border-white/15 rounded-3xl p-8 md:p-10 backdrop-blur-lg bg-white/70 dark:bg-black/40">
+          <div className="relative border border-black/10 dark:border-white/15 rounded-3xl p-8 md:p-10 backdrop-blur-lg bg-white/70 dark:bg-black/40 h-full">
             <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
               {active.title}
               {active.key === "advanced" && (
