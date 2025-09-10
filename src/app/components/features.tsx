@@ -75,7 +75,7 @@ export default function FeaturesInteractive() {
               <li key={c.key} className="flex-shrink-0 md:flex-shrink">
                 <button
                   onClick={() => setActive(c)}
-                  className={`relative w-full text-left rounded-xl px-4 py-3 transition group border text-sm sm:text-base backdrop-blur-md ${
+                  className={`relative w-full text-left rounded-xl px-4 py-3 transition group border text-sm sm:text-base backdrop-blur-md cursor-pointer ${
                     isActive
                       ? "bg-foreground text-background border-transparent shadow"
                       : "border-black/10 dark:border-white/15 hover:border-transparent hover:bg-black/[.05] dark:hover:bg-white/[.08]"
