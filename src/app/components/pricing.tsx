@@ -2,12 +2,16 @@
 import Button from "./button";
 import { useCallback, useRef, useState } from "react";
 
+type Plan = "terminus" | "free" | "pro";
+
 interface PlanFeature {
   label: string;
   proOnly?: boolean;
+  exclude?: Plan[];
 }
 
 const features: PlanFeature[] = [
+  { label: "Crash Protections" },
   { label: "Self" },
   { label: "Teleport" },
   { label: "Network" },
@@ -15,7 +19,7 @@ const features: PlanFeature[] = [
   { label: "World" },
   { label: "Recovery" },
   { label: "Settings" },
-  { label: "Crashes", proOnly: true },
+  { label: "Advanced Crashes", proOnly: true },
   { label: "Custom Support", proOnly: true },
 ];
 
@@ -134,8 +138,23 @@ function CardEdges({ variant }: { variant: "light" | "dark" }) {
 }
 
 export default function Pricing() {
+  const terminusGlow = useGlow();
   const freeGlow = useGlow();
   const proGlow = useGlow();
+  const [proMode, setProMode] = useState<"monthly" | "lifetime">("monthly");
+
+  const featureActive = (f: PlanFeature, plan: Plan) => {
+    if (plan === "pro") return true; // Pro gets everything
+    if (f.proOnly) return false;
+    if (f.exclude && f.exclude.includes(plan)) return false;
+    return true;
+  };
+
+  const crashBadge = (plan: Plan) => {
+    if (plan === "terminus")
+      return { label: "Low", className: "text-orange-500" };
+    return { label: "High", className: "text-green-400" };
+  };
 
   return (
     <section id="pricing" className="max-w-6xl mx-auto px-6 py-24">
@@ -147,7 +166,70 @@ export default function Pricing() {
           Start for free. Upgrade when you want more power.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-3 gap-8">
+        <div
+          ref={terminusGlow.ref}
+          onMouseEnter={terminusGlow.onMouseEnter}
+          onMouseMove={terminusGlow.onMouseMove}
+          onMouseLeave={terminusGlow.onMouseLeave}
+          className="relative flex flex-col border border-black/10 dark:border-white/15 rounded-3xl p-8 bg-white/60 dark:bg-black/30 backdrop-blur-md overflow-hidden"
+          style={{ ["--mx" as any]: "50%", ["--my" as any]: "50%" }}
+        >
+          <div
+            className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+            style={{
+              opacity: terminusGlow.active ? 1 : 0,
+              background:
+                "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.38), rgba(255,255,255,0.04) 55%, transparent 70%)",
+              mixBlendMode: "screen",
+            }}
+          />
+          <CardEdges variant="light" />
+          <div className="mb-6 min-h-[90px]">
+            <h3 className="text-xl font-semibold mb-1">Terminus</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Basic entry. No crash protections.
+            </p>
+          </div>
+          <div className="mb-8">
+            <div className="h-9 mb-4" />
+            <div className="flex items-baseline gap-1 mb-5">
+              <span className="text-4xl font-bold">$0</span>
+              <span className="text-sm text-gray-500">forever</span>
+            </div>
+            <Button className="w-full" variant="secondary">
+              Get
+            </Button>
+          </div>
+          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+            {features.map((f) => {
+              const plan: Plan = "terminus";
+              const active = featureActive(f, plan);
+              const badge =
+                f.label === "Crash Protections" ? crashBadge(plan) : null;
+              return (
+                <li key={f.label} className="flex items-start gap-2">
+                  <Check active={active} />
+                  <span className={!active ? "text-gray-500 line-through" : ""}>
+                    {f.label}
+                    {badge && (
+                      <span
+                        className={`ml-1 text-[10px] uppercase tracking-wide font-semibold ${badge.className}`}
+                      >
+                        {badge.label}
+                      </span>
+                    )}
+                    {f.proOnly && !active && (
+                      <span className="ml-1 text-[9px] uppercase tracking-wide bg-foreground/80 text-background px-1 rounded font-semibold">
+                        Pro
+                      </span>
+                    )}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         <div
           ref={freeGlow.ref}
           onMouseEnter={freeGlow.onMouseEnter}
@@ -169,31 +251,49 @@ export default function Pricing() {
             }}
           />
           <CardEdges variant="light" />
-          <h3 className="text-xl font-semibold mb-1">Free</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
-            Essential tools for casual modding.
-          </p>
-          <div className="flex items-baseline gap-1 mb-6">
-            <span className="text-4xl font-bold">$0</span>
-            <span className="text-sm text-gray-500">forever</span>
+          <div className="mb-6 min-h-[90px]">
+            <h3 className="text-xl font-semibold mb-1">Free</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Essential tools for casual modding.
+            </p>
           </div>
-          <Button className="mb-8" variant="secondary">
-            Download
-          </Button>
-          <ul className="space-y-3 text-sm flex-1 relative z-10">
-            {features.map((f) => (
-              <li key={f.label} className="flex items-start gap-3">
-                <Check active={!f.proOnly} />
-                <span className={f.proOnly ? "text-gray-500 line-through" : ""}>
-                  {f.label}
-                  {f.proOnly && (
-                    <span className="ml-1 text-[10px] uppercase tracking-wide bg-foreground/90 text-background px-1.5 py-0.5 rounded-full font-semibold">
-                      Pro
-                    </span>
-                  )}
-                </span>
-              </li>
-            ))}
+          <div className="mb-8">
+            <div className="h-9 mb-4" />
+            <div className="flex items-baseline gap-1 mb-5">
+              <span className="text-4xl font-bold">$0</span>
+              <span className="text-sm text-gray-500">forever</span>
+            </div>
+            <Button className="w-full" variant="secondary">
+              Download
+            </Button>
+          </div>
+          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+            {features.map((f) => {
+              const plan: Plan = "free";
+              const active = featureActive(f, plan);
+              const badge =
+                f.label === "Crash Protections" ? crashBadge(plan) : null;
+              return (
+                <li key={f.label} className="flex items-start gap-3">
+                  <Check active={active} />
+                  <span className={!active ? "text-gray-500 line-through" : ""}>
+                    {f.label}
+                    {badge && (
+                      <span
+                        className={`ml-1 text-[10px] uppercase tracking-wide font-semibold ${badge.className}`}
+                      >
+                        {badge.label}
+                      </span>
+                    )}
+                    {f.proOnly && !active && (
+                      <span className="ml-1 text-[10px] uppercase tracking-wide bg-foreground/90 text-background px-1.5 py-0.5 rounded-full font-semibold">
+                        Pro
+                      </span>
+                    )}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -219,31 +319,79 @@ export default function Pricing() {
           />
           <CardEdges variant="light" />
 
-          <h3 className="text-xl font-semibold mb-1">Pro</h3>
-          <p className="text-sm text-white/60 mb-6">
-            Full power & automation for advanced users.
-          </p>
-          <div className="flex items-baseline gap-1 mb-6">
-            <span className="text-4xl font-bold">$9</span>
-            <span className="text-sm opacity-80">/month</span>
+          <div className="mb-6 min-h-[90px]">
+            <h3 className="text-xl font-semibold mb-1">Pro</h3>
+            <p className="text-sm text-white/60">
+              Full power & automation for advanced users.
+            </p>
           </div>
-          <Button
-            className="mb-8 bg-white text-black hover:bg-white/90"
-            variant="primary"
-          >
-            Go Pro
-          </Button>
-          <ul className="space-y-3 text-sm flex-1 relative z-10">
-            {features.map((f) => (
-              <li key={f.label} className="flex items-start gap-3">
-                <Check active={true} />
-                <span>{f.label}</span>
-              </li>
-            ))}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="inline-flex rounded-md overflow-hidden border border-white/15 text-[11px] font-medium">
+                <button
+                  type="button"
+                  onClick={() => setProMode("monthly")}
+                  className={`px-3 py-1.5 transition-colors ${
+                    proMode === "monthly"
+                      ? "bg-white text-black"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setProMode("lifetime")}
+                  className={`px-3 py-1.5 transition-colors border-l border-white/15 ${
+                    proMode === "lifetime"
+                      ? "bg-white text-black"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  Lifetime
+                </button>
+              </div>
+            </div>
+            {proMode === "monthly" ? (
+              <div className="flex items-baseline gap-1 mb-5">
+                <span className="text-4xl font-bold">€3</span>
+                <span className="text-sm opacity-80">/month</span>
+              </div>
+            ) : (
+              <div className="flex items-baseline gap-1 mb-5">
+                <span className="text-4xl font-bold">€10</span>
+                <span className="text-sm opacity-80">lifetime</span>
+              </div>
+            )}
+            <Button
+              className="w-full bg-white text-black hover:bg-white/90"
+              variant="primary"
+            >
+              {proMode === "monthly" ? "Subscribe" : "Get Lifetime"}
+            </Button>
+          </div>
+          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+            {features.map((f) => {
+              const plan: Plan = "pro";
+              const badge =
+                f.label === "Crash Protections" ? crashBadge(plan) : null;
+              return (
+                <li key={f.label} className="flex items-start gap-3">
+                  <Check active={true} />
+                  <span>
+                    {f.label}
+                    {badge && (
+                      <span
+                        className={`ml-1 text-[10px] uppercase tracking-wide font-semibold ${badge.className}`}
+                      >
+                        {badge.label}
+                      </span>
+                    )}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
-          <p className="mt-8 text-xs text-white/50">
-            Cancel anytime. Future modules included.
-          </p>
         </div>
       </div>
     </section>
