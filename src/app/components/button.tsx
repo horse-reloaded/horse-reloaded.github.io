@@ -20,7 +20,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "rounded-full transition-colors flex items-center justify-center font-medium disabled:opacity-60 disabled:cursor-not-allowed";
+    "rounded-full transition-colors flex items-center justify-center font-medium disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none";
 
   const variants: Record<Variant, string> = {
     primary:

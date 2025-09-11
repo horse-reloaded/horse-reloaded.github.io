@@ -2,7 +2,7 @@
 import Button from "./button";
 import { useCallback, useRef, useState } from "react";
 
-type Plan = "terminus" | "free" | "pro";
+type Plan = "terminus" | "horsereloaded" | "horsedonator";
 
 interface PlanFeature {
   label: string;
@@ -12,25 +12,25 @@ interface PlanFeature {
 
 const features: PlanFeature[] = [
   { label: "Crash Protections" },
+  { label: "Cloud Features", exclude: ["terminus"] },
   { label: "Self" },
-  { label: "Teleport" },
+  // { label: "Teleport" },
   { label: "Network" },
   { label: "Players" },
-  { label: "World" },
+  // { label: "World" }, // No need to show everything
   { label: "Recovery" },
   { label: "Settings" },
-  { label: "Advanced Crashes", proOnly: true },
-  { label: "Custom Support", proOnly: true },
+  { label: "Advanced Griefing", proOnly: true },
+  { label: "Feature Request", proOnly: true },
 ];
 
 function Check({ active }: { active: boolean }) {
   return (
     <span
-      className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold ${
-        active
+      className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold ${active
           ? "bg-gradient-to-br from-foreground to-foreground/70 text-background"
           : "border border-black/15 dark:border-white/20 text-gray-400"
-      }`}
+        }`}
       aria-hidden="true"
     >
       {active ? "✓" : ""}
@@ -144,7 +144,7 @@ export default function Pricing() {
   const [proMode, setProMode] = useState<"monthly" | "lifetime">("monthly");
 
   const featureActive = (f: PlanFeature, plan: Plan) => {
-    if (plan === "pro") return true; // Pro gets everything
+    if (plan === "horsedonator") return true; // Pro gets everything
     if (f.proOnly) return false;
     if (f.exclude && f.exclude.includes(plan)) return false;
     return true;
@@ -152,18 +152,18 @@ export default function Pricing() {
 
   const crashBadge = (plan: Plan) => {
     if (plan === "terminus")
-      return { label: "Low", className: "text-orange-500" };
-    return { label: "High", className: "text-green-400" };
+      return { label: "Medium", className: "text-orange-500" };
+    return { label: "Top", className: "text-green-400" };
   };
 
   return (
     <section id="pricing" className="max-w-6xl mx-auto px-6 py-24">
       <div className="text-center mb-14 space-y-3">
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-          Simple pricing.
+          Simple and Free
         </h2>
         <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-          Start for free. Upgrade when you want more power.
+          Use everything Horse Reloaded has to offer for free, or support us and unlock even more.
         </p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
@@ -188,11 +188,10 @@ export default function Pricing() {
           <div className="mb-6 min-h-[90px]">
             <h3 className="text-xl font-semibold mb-1">Terminus</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Basic entry. No crash protections.
+              Best open source mod menu, made by the community, but also lost by maintainers.
             </p>
           </div>
           <div className="mb-8">
-            <div className="h-9 mb-4" />
             <div className="flex items-baseline gap-1 mb-5">
               <span className="text-4xl font-bold">$0</span>
               <span className="text-sm text-gray-500">forever</span>
@@ -201,7 +200,7 @@ export default function Pricing() {
               Get
             </Button>
           </div>
-          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+          <ul className="space-y-3 text-sm relative z-10">
             {features.map((f) => {
               const plan: Plan = "terminus";
               const active = featureActive(f, plan);
@@ -252,13 +251,12 @@ export default function Pricing() {
           />
           <CardEdges variant="light" />
           <div className="mb-6 min-h-[90px]">
-            <h3 className="text-xl font-semibold mb-1">Free</h3>
+            <h3 className="text-xl font-semibold mb-1">Horse Reloaded</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Essential tools for casual modding.
+              A fork of Terminus, with improved stability, features and protections.
             </p>
           </div>
           <div className="mb-8">
-            <div className="h-9 mb-4" />
             <div className="flex items-baseline gap-1 mb-5">
               <span className="text-4xl font-bold">$0</span>
               <span className="text-sm text-gray-500">forever</span>
@@ -267,9 +265,9 @@ export default function Pricing() {
               Download
             </Button>
           </div>
-          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+          <ul className="space-y-3 text-sm relative z-10">
             {features.map((f) => {
-              const plan: Plan = "free";
+              const plan: Plan = "horsereloaded";
               const active = featureActive(f, plan);
               const badge =
                 f.label === "Crash Protections" ? crashBadge(plan) : null;
@@ -320,49 +318,52 @@ export default function Pricing() {
           <CardEdges variant="light" />
 
           <div className="mb-6 min-h-[90px]">
-            <h3 className="text-xl font-semibold mb-1">Pro</h3>
+            <h3 className="text-xl font-semibold mb-1">Reloaded Donator</h3>
             <p className="text-sm text-white/60">
-              Full power & automation for advanced users.
+              An improved version of Horse Reloaded, with crashes and griefing against Paid mod menus.
             </p>
           </div>
           <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="inline-flex rounded-md overflow-hidden border border-white/15 text-[11px] font-medium">
-                <button
-                  type="button"
-                  onClick={() => setProMode("monthly")}
-                  className={`px-3 py-1.5 transition-colors ${
-                    proMode === "monthly"
-                      ? "bg-white text-black"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                >
-                  Monthly
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setProMode("lifetime")}
-                  className={`px-3 py-1.5 transition-colors border-l border-white/15 ${
-                    proMode === "lifetime"
-                      ? "bg-white text-black"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                >
-                  Lifetime
-                </button>
+
+            <div className="flex">
+
+              {proMode === "monthly" ? (
+                <div className="flex items-baseline gap-1 mb-5">
+                  <span className="text-4xl font-bold">€3</span>
+                  <span className="text-sm opacity-80">/month</span>
+                </div>
+              ) : (
+                <div className="flex items-baseline gap-1 mb-5">
+                  <span className="text-4xl font-bold">€10</span>
+                  <span className="text-sm opacity-80">lifetime</span>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between mb-4 ml-auto">
+                <div className="inline-flex rounded-md overflow-hidden border border-white/15 text-[11px] font-medium">
+                  <button
+                    type="button"
+                    onClick={() => setProMode("monthly")}
+                    className={`px-3 py-1.5 transition-colors cursor-pointer ${proMode === "monthly"
+                        ? "bg-white text-black"
+                        : "text-white/70 hover:text-white"
+                      }`}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setProMode("lifetime")}
+                    className={`px-3 py-1.5 transition-colors border-l border-white/15 cursor-pointer ${proMode === "lifetime"
+                        ? "bg-white text-black"
+                        : "text-white/70 hover:text-white"
+                      }`}
+                  >
+                    Lifetime
+                  </button>
+                </div>
               </div>
             </div>
-            {proMode === "monthly" ? (
-              <div className="flex items-baseline gap-1 mb-5">
-                <span className="text-4xl font-bold">€3</span>
-                <span className="text-sm opacity-80">/month</span>
-              </div>
-            ) : (
-              <div className="flex items-baseline gap-1 mb-5">
-                <span className="text-4xl font-bold">€10</span>
-                <span className="text-sm opacity-80">lifetime</span>
-              </div>
-            )}
             <Button
               className="w-full bg-white text-black hover:bg-white/90"
               variant="primary"
@@ -370,11 +371,13 @@ export default function Pricing() {
               {proMode === "monthly" ? "Subscribe" : "Get Lifetime"}
             </Button>
           </div>
-          <ul className="space-y-3 text-sm relative z-10 mt-auto">
+          <ul className="space-y-3 text-sm relative z-10">
             {features.map((f) => {
-              const plan: Plan = "pro";
+              const plan: Plan = "horsedonator";
               const badge =
-                f.label === "Crash Protections" ? crashBadge(plan) : null;
+                f.label === "Crash Protections" ? crashBadge(plan) : 
+                f.label == "Advanced Griefing" ? { label: "Crashes", className: "bg-foreground text-background px-1.5 py-0.5 rounded-full font-semibold ml-1 text-[10px] uppercase tracking-wide" } 
+                : null;
               return (
                 <li key={f.label} className="flex items-start gap-3">
                   <Check active={true} />

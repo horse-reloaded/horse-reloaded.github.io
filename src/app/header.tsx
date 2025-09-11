@@ -42,7 +42,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-3 shrink-0">
-          <Button size="sm">Download</Button>
+          <Button size="sm" className="font-semibold">Download</Button>
         </div>
       </div>
     </header>
