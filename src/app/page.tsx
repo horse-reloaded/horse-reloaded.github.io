@@ -3,6 +3,7 @@ import FeaturesInteractive from "./components/features";
 import Highlights from "./components/highlights";
 import Pricing from "./components/pricing";
 import FadeSection from "./components/fade-section";
+import FAQ from "./components/faq";
 
 export default function Home() {
   return (
@@ -54,6 +55,10 @@ export default function Home() {
         </FadeSection>
         <FadeSection as="div" delay={0.2}>
           <Pricing />
+        </FadeSection>
+
+        <FadeSection as="div" delay={0.25}>
+          <FAQ />
         </FadeSection>
       </main>
     </div>

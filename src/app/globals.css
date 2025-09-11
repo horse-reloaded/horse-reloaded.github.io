@@ -99,3 +99,13 @@ body {
 
 .btn-shine:active { filter: brightness(.95); }
 
+@keyframes header-progress {
+  0% { transform: scaleX(0); opacity:.6; }
+  10% { opacity:1; }
+  85% { transform: scaleX(1); opacity:1; }
+  100% { opacity:0; }
+}
+.animate-header-progress { animation: header-progress 1.2s cubic-bezier(.65,.05,.36,1); }
+
+html { scroll-behavior: smooth; }
+

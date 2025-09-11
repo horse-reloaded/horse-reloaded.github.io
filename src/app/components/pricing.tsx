@@ -27,10 +27,11 @@ const features: PlanFeature[] = [
 function Check({ active }: { active: boolean }) {
   return (
     <span
-      className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold ${active
+      className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold ${
+        active
           ? "bg-gradient-to-br from-foreground to-foreground/70 text-background"
           : "border border-black/15 dark:border-white/20 text-gray-400"
-        }`}
+      }`}
       aria-hidden="true"
     >
       {active ? "✓" : ""}
@@ -163,7 +164,8 @@ export default function Pricing() {
           Simple and Free
         </h2>
         <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-          Use everything Horse Reloaded has to offer for free, or support us and unlock even more.
+          Use everything Horse Reloaded has to offer for free, or support us and
+          unlock even more.
         </p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
@@ -188,7 +190,8 @@ export default function Pricing() {
           <div className="mb-6 min-h-[90px]">
             <h3 className="text-xl font-semibold mb-1">Terminus</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Best open source mod menu, made by the community, but also lost by maintainers.
+              Best open source mod menu, made by the community, but also lost by
+              maintainers.
             </p>
           </div>
           <div className="mb-8">
@@ -229,7 +232,7 @@ export default function Pricing() {
             })}
           </ul>
         </div>
-        
+
         <div
           ref={freeGlow.ref}
           onMouseEnter={freeGlow.onMouseEnter}
@@ -254,7 +257,8 @@ export default function Pricing() {
           <div className="mb-6 min-h-[90px]">
             <h3 className="text-xl font-semibold mb-1">Horse Reloaded</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              A fork of Terminus, with improved stability, features and protections.
+              A fork of Terminus, with improved stability, features and
+              protections.
             </p>
           </div>
           <div className="mb-8">
@@ -321,13 +325,12 @@ export default function Pricing() {
           <div className="mb-6 min-h-[90px]">
             <h3 className="text-xl font-semibold mb-1">Reloaded Donator</h3>
             <p className="text-sm text-white/60">
-              An improved version of Horse Reloaded, with crashes and griefing against Paid mod menus.
+              An improved version of Horse Reloaded, with crashes and griefing
+              against Paid mod menus.
             </p>
           </div>
           <div className="mb-8">
-
             <div className="flex">
-
               {proMode === "monthly" ? (
                 <div className="flex items-baseline gap-1 mb-5">
                   <span className="text-4xl font-bold">€3</span>
@@ -345,20 +348,22 @@ export default function Pricing() {
                   <button
                     type="button"
                     onClick={() => setProMode("monthly")}
-                    className={`px-3 py-1.5 transition-colors cursor-pointer ${proMode === "monthly"
+                    className={`px-3 py-1.5 transition-colors cursor-pointer ${
+                      proMode === "monthly"
                         ? "bg-white text-black"
                         : "text-white/70 hover:text-white"
-                      }`}
+                    }`}
                   >
                     Monthly
                   </button>
                   <button
                     type="button"
                     onClick={() => setProMode("lifetime")}
-                    className={`px-3 py-1.5 transition-colors border-l border-white/15 cursor-pointer ${proMode === "lifetime"
+                    className={`px-3 py-1.5 transition-colors border-l border-white/15 cursor-pointer ${
+                      proMode === "lifetime"
                         ? "bg-white text-black"
                         : "text-white/70 hover:text-white"
-                      }`}
+                    }`}
                   >
                     Lifetime
                   </button>
@@ -376,9 +381,15 @@ export default function Pricing() {
             {features.map((f) => {
               const plan: Plan = "horsedonator";
               const badge =
-                f.label === "Crash Protections" ? crashBadge(plan) : 
-                f.label == "Advanced Griefing" ? { label: "Crashes", className: "bg-foreground text-background px-1.5 py-0.5 rounded-full font-semibold ml-1 text-[10px] uppercase tracking-wide" } 
-                : null;
+                f.label === "Crash Protections"
+                  ? crashBadge(plan)
+                  : f.label == "Advanced Griefing"
+                  ? {
+                      label: "Crashes",
+                      className:
+                        "bg-foreground text-background px-1.5 py-0.5 rounded-full font-semibold ml-1 text-[10px] uppercase tracking-wide",
+                    }
+                  : null;
               return (
                 <li key={f.label} className="flex items-start gap-3">
                   <Check active={true} />
@@ -399,7 +410,8 @@ export default function Pricing() {
         </div>
       </div>
       <p className="text-xs text-gray-500 dark:text-gray-500 text-center mt-2">
-        All features included in Terminus are completely free, we include the donator version to pay for cloud features and continue development.
+        All features included in Terminus are completely free, we include the
+        donator version to pay for cloud features and continue development.
       </p>
     </section>
   );
