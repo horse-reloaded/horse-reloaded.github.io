@@ -44,9 +44,9 @@ const categories: FeatureCategory[] = [
   },
   {
     key: "crashes",
-    title: "Advanced Crashes (Pro)",
-    tagline: "Remove any player from your session.",
-    points: ["Disintegration", "You Again?", "ChuChu", "And Many More..."],
+    title: "Advanced Griefing (Donator)",
+    tagline: "Mess up with other modders, even paid ones.",
+    points: ["6 Different Crashes", "Advanced Griefing", "Remote Tracking", "And Many More..."],
   },
 ];
 
@@ -82,7 +82,7 @@ export default function FeaturesInteractive() {
                   }`}
                   aria-current={isActive}
                 >
-                  <span className="font-medium flex items-center gap-2">
+                  <span className="font-medium flex items-center gap-2 truncate">
                     {c.title}
                     {c.key === "advanced" && (
                       <span className="text-[10px] font-semibold uppercase tracking-wide bg-foreground text-background px-2 py-0.5 rounded-full shadow-sm">
@@ -91,7 +91,7 @@ export default function FeaturesInteractive() {
                     )}
                   </span>
                   <span
-                    className={`block mt-1 text-xs leading-snug ${
+                    className={`block mt-1 text-xs leading-snug truncate ${
                       isActive
                         ? "text-background/80"
                         : "text-gray-500 dark:text-gray-400"

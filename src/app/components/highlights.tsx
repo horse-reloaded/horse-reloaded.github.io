@@ -30,12 +30,12 @@ const items: HighlightItem[] = [
   {
     icon: <span className="text-xs">🧨</span>,
     title: "Advanced Crashes",
-    description: "Disintegration, You Again?, ChuChu and many more.",
+    description: "Entity, Sync, Physics, Task, and more crashes.",
   },
   {
     icon: <span className="text-xs">⚡</span>,
     title: "Updates & Reliability",
-    description: "Fast updates and reliable protections always active.",
+    description: "Fast updates, we work closely with our community.",
   },
 ];
 

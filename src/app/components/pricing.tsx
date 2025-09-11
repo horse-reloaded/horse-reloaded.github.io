@@ -229,6 +229,7 @@ export default function Pricing() {
             })}
           </ul>
         </div>
+        
         <div
           ref={freeGlow.ref}
           onMouseEnter={freeGlow.onMouseEnter}
@@ -397,6 +398,9 @@ export default function Pricing() {
           </ul>
         </div>
       </div>
+      <p className="text-xs text-gray-500 dark:text-gray-500 text-center mt-2">
+        All features included in Terminus are completely free, we include the donator version to pay for cloud features and continue development.
+      </p>
     </section>
   );
 }
