@@ -23,15 +23,15 @@ export default function Header() {
           onClick={trigger}
         >
           <Image
-            src="/horse.svg"
+            src="/horse-reloaded-wb-small.png"
             alt="Logo"
-            width={32}
+            width={64}
             height={32}
-            style={{ filter: "invert(1)" }}
+            className="w-16"
           />
-          <span className="font-semibold text-lg tracking-tight">
+          {/* <span className="font-semibold text-lg tracking-tight">
             Horse Reloaded
-          </span>
+          </span> */}
         </div>
 
         <div className="flex-1 hidden sm:flex justify-center" onClick={trigger}>

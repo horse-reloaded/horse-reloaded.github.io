@@ -200,7 +200,7 @@ export default function Pricing() {
               <span className="text-sm text-gray-500">forever</span>
             </div>
             <Button className="w-full" variant="secondary">
-              Get
+              Download
             </Button>
           </div>
           <ul className="space-y-3 text-sm relative z-10">
