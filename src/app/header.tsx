@@ -2,10 +2,13 @@
 import Button from "./components/button";
 import Image from "next/image";
 import { useState } from "react";
+import { LOADER_URL } from "./constants/constants";
 
 export default function Header() {
   const [animKey, setAnimKey] = useState(0);
   const trigger = () => setAnimKey((k) => k + 1);
+
+  const openGithub = () => window.open("https://github.com/horse-reloaded", "_blank");
 
   const linkBase =
     "hover:text-black dark:hover:text-white transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full";
@@ -20,7 +23,7 @@ export default function Header() {
         />
         <div
           className="flex items-center gap-2 shrink-0 cursor-pointer select-none"
-          onClick={trigger}
+          onClick={openGithub}
         >
           <Image
             src="/horse-reloaded-wb-small.png"
@@ -36,20 +39,26 @@ export default function Header() {
 
         <div className="flex-1 hidden sm:flex justify-center" onClick={trigger}>
           <nav className="flex gap-8 text-sm font-medium text-gray-700 dark:text-gray-300">
-            <a href="#features" className={linkBase}>
+            <a href="/#features" className={linkBase}>
               Features
             </a>
-            <a href="#pricing" className={linkBase}>
-              Pricing
+            <a href="/#versions" className={linkBase}>
+              Versions
             </a>
-            <a href="#faq" className={linkBase}>
+            <a href="/#faq" className={linkBase}>
               FAQ
+            </a>
+            <a href="/tos" className={linkBase}>
+              TOS
             </a>
           </nav>
         </div>
 
         <div className="flex items-center gap-3 shrink-0" onClick={trigger}>
-          <Button size="sm" className="font-semibold">
+          <Button
+            onClick={() => window.open(LOADER_URL, "_self")}
+            size="sm" className="font-semibold"
+          >
             Download
           </Button>
         </div>

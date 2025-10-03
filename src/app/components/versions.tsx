@@ -1,4 +1,5 @@
 "use client";
+import { DISCORD_URL, LOADER_URL } from "../constants/constants";
 import Button from "./button";
 import { useCallback, useRef, useState } from "react";
 
@@ -138,7 +139,7 @@ function CardEdges({ variant }: { variant: "light" | "dark" }) {
   );
 }
 
-export default function Pricing() {
+export default function Versions() {
   const terminusGlow = useGlow();
   const freeGlow = useGlow();
   const proGlow = useGlow();
@@ -158,10 +159,10 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="max-w-6xl mx-auto px-6 py-24">
+    <section id="versions" className="max-w-6xl mx-auto px-6 py-24">
       <div className="text-center mb-14 space-y-3">
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-          Simple and Free
+          Available to Everyone
         </h2>
         <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
           Use everything Horse Reloaded has to offer for free, or support us and
@@ -190,8 +191,7 @@ export default function Pricing() {
           <div className="mb-6 min-h-[90px]">
             <h3 className="text-xl font-semibold mb-1">Terminus</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Best open source mod menu, made by the community, but also lost by
-              maintainers.
+              Best open source mod menu, made by the community, but also abandoned.
             </p>
           </div>
           <div className="mb-8">
@@ -199,7 +199,11 @@ export default function Pricing() {
               <span className="text-4xl font-bold">$0</span>
               <span className="text-sm text-gray-500">forever</span>
             </div>
-            <Button className="w-full" variant="secondary">
+            <Button
+              onClick={() => window.open(LOADER_URL, "_self")}
+              className="w-full"
+              variant="secondary"
+            >
               Download
             </Button>
           </div>
@@ -266,7 +270,11 @@ export default function Pricing() {
               <span className="text-4xl font-bold">$0</span>
               <span className="text-sm text-gray-500">forever</span>
             </div>
-            <Button className="w-full" variant="secondary">
+            <Button
+              onClick={() => window.open(LOADER_URL, "_self")}
+              className="w-full"
+              variant="secondary"
+            >
               Download
             </Button>
           </div>
@@ -358,8 +366,8 @@ export default function Pricing() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setProMode("lifetime")}
-                    className={`px-3 py-1.5 transition-colors border-l border-white/15 cursor-pointer ${
+                    // onClick={() => setProMode("lifetime")}
+                    className={`px-3 py-1.5 transition-colors border-l border-white/15 cursor-pointer line-through ${
                       proMode === "lifetime"
                         ? "bg-white text-black"
                         : "text-white/70 hover:text-white"
@@ -371,6 +379,7 @@ export default function Pricing() {
               </div>
             </div>
             <Button
+              onClick={() => window.open(DISCORD_URL, "_blank")}
               className="w-full bg-white text-black hover:bg-white/90"
               variant="primary"
             >

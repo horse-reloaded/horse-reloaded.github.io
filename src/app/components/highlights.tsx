@@ -10,32 +10,32 @@ const items: HighlightItem[] = [
   {
     icon: <span className="text-xs">🛡</span>,
     title: "Crash Protections",
-    description: "Protects against other mods. Stable and fast experience.",
+    description: "Protects against most popular paid mods. Improved stability and fast experience.",
   },
   {
     icon: <span className="text-xs">🎮</span>,
     title: "Player",
-    description: "God Mode, Infinite Stamina, Infinite Ammo.",
+    description: "God Mode, Infinite Stamina, Infinite Ammo and more.",
   },
   {
     icon: <span className="text-xs">🧭</span>,
     title: "Utilities",
-    description: "Anti AFK, No Clip, Super Jump para exploración.",
+    description: "Anti AFK, No Clip, Super Jump and more.",
   },
   {
     icon: <span className="text-xs">👁</span>,
     title: "Visuals",
-    description: "Player ESP, customization and ambient tweaks, night vision.",
+    description: "Player ESP, World Customization, Info Overlay and more.",
   },
   {
     icon: <span className="text-xs">🧨</span>,
     title: "Advanced Crashes",
-    description: "Entity, Sync, Physics, Task, and more crashes.",
+    description: "Many different crashes to mess with other modders, even paid ones. (been able to crash all but 1-2 paid menus*)",
   },
   {
     icon: <span className="text-xs">⚡</span>,
     title: "Updates & Reliability",
-    description: "Fast updates, we work closely with our community.",
+    description: "Fast updates, we work closely with our community and are always looking to improve the mod.",
   },
 ];
 

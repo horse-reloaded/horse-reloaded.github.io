@@ -14,10 +14,10 @@ const categories: FeatureCategory[] = [
     title: "Crash Protections",
     tagline: "Keep your game running smoothly.",
     points: [
-      "Protect against other mods",
+      "Protect against most Paid menus",
       "Stable and smooth experience",
-      "Fast updates",
-      "Reliable protections",
+      "Fast updates & feature requests",
+      "Cleaner and more intuitive UI",
     ],
   },
   {
@@ -25,9 +25,9 @@ const categories: FeatureCategory[] = [
     title: "Self Options",
     tagline: "Customize your experience.",
     points: [
+      "Standard from the original repository",
       "God Mode",
       "Infinite Stamina & Infinite Ammo",
-      "Anti AFK",
       "No Clip & Super Jump",
     ],
   },
@@ -36,17 +36,22 @@ const categories: FeatureCategory[] = [
     title: "Visuals",
     tagline: "Player and world enhancements.",
     points: [
-      "Player ESP",
+      "Improved ESP (no visual glitches or crashes)",
       "World customization",
-      "World ambience tweaks",
-      "Night vision",
+      "Player tags & tracers",
+      "Session info overlay",
     ],
   },
   {
     key: "crashes",
     title: "Advanced Griefing (Donator)",
     tagline: "Mess up with other modders, even paid ones.",
-    points: ["6 Different Crashes", "Advanced Griefing", "Remote Tracking", "And Many More..."],
+    points: [
+      "Many different Crashes", 
+      "Advanced Griefing", 
+      "Discord Integration", 
+      "And many More..."
+    ],
   },
 ];
 

@@ -1,8 +1,8 @@
 import Button from "./components/button";
 import FeaturesInteractive from "./components/features";
-import Highlights from "./components/highlights";
-import Pricing from "./components/pricing";
 import FadeSection from "./components/fade-section";
+import Highlights from "./components/highlights";
+import Versions from "./components/versions";
 import FAQ from "./components/faq";
 
 export default function Home() {
@@ -48,7 +48,7 @@ export default function Home() {
           <Highlights />
         </FadeSection>
         <FadeSection as="div" delay={0.2}>
-          <Pricing />
+          <Versions />
         </FadeSection>
 
         <FadeSection as="div" delay={0.25}>

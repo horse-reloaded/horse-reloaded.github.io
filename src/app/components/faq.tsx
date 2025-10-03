@@ -5,24 +5,24 @@ interface FAQItem {
 
 const items: FAQItem[] = [
   {
-    question: "Why is not open source?",
+    question: "Why cant i see the source code?",
     answer:
-      "If we make it open source other modders could try to bypass protections and potentially harm users.",
+      "The underground modding community is a bit toxic, and leaving the source code open, would allow P2C mod menus to easily bypass the protections just to stay on top.",
   },
   {
     question: "What is this?",
     answer:
-      "A fork of HorseMenu with improvements and customizations tailored for stability and protections.",
+      "Horse Reloaded is a fork of YimMenu/HorseMenu with added features and bug fixes, but most importantly, greater protections against P2C (paid to cheat) mod menus.",
   },
   {
     question: "Why use this Mod?",
     answer:
-      "Enhanced crash protections and refinements give you a smoother, safer gameplay experience.",
+      "Because the original project is no longer maintained, and I wanted to share my work with the community.",
   },
   {
     question: "Is this Mod paid?",
     answer:
-      "We offer a free version with the same crash protections plus paid tiers that unlock extra features.",
+      "Partially. This project includes cloud features that requires a server to run, it also motivates development and the donations help cover costs. No important features are locked behind a paywall and you can still use the menu for free with all the original features and more.",
   },
 ];
 
