@@ -1,15 +1,15 @@
 
-interface TOSItem {
+interface TermsItem {
     question: string;
     answer: string;
 }
 
 const date_of_effect = new Date("Fri Oct 03 2025");
-const items: TOSItem[] = [
+const items: TermsItem[] = [
     {
         question: "Effective date",
         answer:
-            "These Terms of Service (\"Terms\") are effective as of the date you start using Horse Reloaded and apply to all users of the project, website, binaries, cloud services, and any associated features. By using Horse Reloaded you agree to these Terms.",
+            "These Terms of Service (\"TOS\") are effective as of the date you start using Horse Reloaded and apply to all users of the project, website, binaries, cloud services, and any associated features. By using Horse Reloaded you agree to these Terms.",
     },
     {
         question: "Provided binaries",
@@ -63,7 +63,7 @@ const items: TOSItem[] = [
     },
 ];
 
-export default function Tos() {
+export default function Terms() {
     return (
         <section id="faq" className="max-w-4xl mx-auto px-6 py-24">
             <div className="absolute inset-0 pointer-events-none">

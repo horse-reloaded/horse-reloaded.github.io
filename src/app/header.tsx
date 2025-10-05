@@ -48,8 +48,11 @@ export default function Header() {
             <a href="/#faq" className={linkBase}>
               FAQ
             </a>
-            <a href="/tos" className={linkBase}>
-              TOS
+            <a href="/terms" className={linkBase}>
+              Terms
+            </a>
+            <a href="/privacy" className={linkBase}>
+              Privacy
             </a>
           </nav>
         </div>
