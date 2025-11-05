@@ -1,4 +1,5 @@
 import Button from "./components/button";
+import { DISCORD_URL } from '@/app/constants/constants'
 import FeaturesInteractive from "./components/features";
 import FadeSection from "./components/fade-section";
 import Highlights from "./components/highlights";
@@ -25,6 +26,7 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button
+              onClick={() => window.open(DISCORD_URL)}
                 size="lg"
                 variant="discord"
                 aria-label="Join the Horse Reloaded Discord community"

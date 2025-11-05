@@ -1,3 +1,5 @@
+import { DISCORD_URL } from '@/app/constants/constants'
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
@@ -17,7 +19,7 @@ export default function Footer() {
           </a>
           <p className="text-sm font-medium">© {currentYear} Horse Reloaded</p>
           <a
-            href="https://discord.com/invite/reloaded"
+            href={DISCORD_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Discord Horse Reloaded"
